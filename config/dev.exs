@@ -24,8 +24,7 @@ config :chat_demo, ChatDemoWeb.Endpoint,
     node: [
       "node_modules/webpack/bin/webpack.js",
       "--watch-stdin",
-      "--colors",
-      cd: Path.expand("../assets", __DIR__)
+      "--colors"
     ]
   ]
 
