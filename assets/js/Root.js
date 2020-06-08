@@ -1,16 +1,13 @@
-// assets/js/Root.tsx
+import React, { Component} from 'react';
 
-import React, { Component } from 'react'
-
-// import Header from './components/Header'
-// import HomePage from './pages'
-
-export default class Root extends Component {
+class Root extends Component {
   render() {
     return (
-      <p>
-        Test paragraph
-      </p>
-    )
+      <div>
+        <p>Test Paragraph</p>
+      </div>
+    );
   }
 }
+
+export default Root;

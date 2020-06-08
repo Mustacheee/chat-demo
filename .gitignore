@@ -21,6 +21,7 @@ erl_crash.dump
 
 # Ignore package tarball (built via "mix hex.build").
 chat_demo-*.tar
+phoenix_react_playground-*.tar
 
 # If NPM crashes, it generates a log, let's ignore it too.
 npm-debug.log

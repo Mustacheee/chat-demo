@@ -23,9 +23,10 @@ config :chat_demo, ChatDemoWeb.Endpoint,
   watchers: [
     node: [
       "node_modules/webpack/bin/webpack.js",
+      "--mode",
+      "development",
       "--watch-stdin",
-      "--colors",
-      cd: Path.expand("../assets", __DIR__)
+      "--colors"
     ]
   ]
 

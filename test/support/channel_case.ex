@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 defmodule ChatDemoWeb.ChannelCase do
+=======
+defmodule PhoenixReactPlaygroundWeb.ChannelCase do
+>>>>>>> --wip-- [skip ci]
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
