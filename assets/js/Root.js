@@ -1,6 +1,7 @@
 // assets/js/Root.tsx
 
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import ChatHistory from './components/ChatHistory/ChatHistory';
 
 // import Header from './components/Header'
 // import HomePage from './pages'
@@ -8,9 +9,7 @@ import React, { Component } from 'react'
 export default class Root extends Component {
   render() {
     return (
-      <p>
-        Test paragraph
-      </p>
+      <ChatHistory />
     )
   }
 }

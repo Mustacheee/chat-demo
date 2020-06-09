@@ -23,8 +23,9 @@ config :chat_demo, ChatDemoWeb.Endpoint,
   watchers: [
     node: [
       "node_modules/webpack/bin/webpack.js",
-      "--watch-stdin",
-      "--colors"
+      "--mode",
+      "development",
+      "--watch-stdin"
     ]
   ]
 
