@@ -1,5 +1,7 @@
 // assets/js/app.tsx
 
+import '../css/app.scss'
+
 import 'phoenix_html'
 
 import * as React from 'react'

@@ -1,10 +1,13 @@
 import React from 'react';
+import '../../../css/ChatHistory/chathistory.scss';
 
 const chatHistory = props => {
     return (
-        <p>
-            Test Chat window
-        </p>
+        <div className="chat-history">
+            <p>
+                Test Chat window
+            </p>
+        </div>
     );
 }
 
