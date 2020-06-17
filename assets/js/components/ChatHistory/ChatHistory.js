@@ -1,13 +1,27 @@
 import React from 'react';
-import '../../../css/ChatHistory/chathistory.scss';
+import TextField from '@material-ui/core/TextField';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const chatHistory = props => {
     return (
-        <div className="chat-history">
-            <p>
-                Test Chat window
-            </p>
-        </div>
+        <TextField
+          id="outlined-multiline-static"
+          multiline
+          placeholder="Chat History"
+          rows={4}
+          defaultValue={props.messages.join('\n')}
+          inputProps={{readOnly: true}}
+          variant="filled"
+        />
+        // <TextareaAutosize
+        //     id="filled-full-width"
+        //     label="Chat History"
+        //     margin="normal"
+        //     readOnly={true}
+        //     variant="filled"
+        //     defaultValue={props.messages.join('\n')}
+        // >
+        // </TextareaAutosize>
     );
 }
 

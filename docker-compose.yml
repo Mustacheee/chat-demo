@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  zegocore:
+    build:
+      context: .
+    env_file:
+      - ./docker/${ZEGOCORE_ENV}/app.env
+      - ./docker/${ZEGOCORE_ENV}/db.env
+    volumes:
+      - .:/app
+    environment:
+      DB_HOST: db
+      INFLUX_HOST: influxdb
+      PGHOST: db
+      PGPORT: 5432
+    command: ./entrypoint.sh
+    ports:
+      - "${ZEGOCORE_PORT}:4001"
+    depends_on:
+      - db
+      - redis
+      - influxdb
+  db:
+    image: postgres:11.2
+    env_file:
+      - ./docker/${ZEGOCORE_ENV}/db.env
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "${ZEGODB_PORT}:5432"
+  influxdb:
+    image: influxdb:1.3.2
+    env_file:
+      - ./docker/${ZEGOCORE_ENV}/db.env
+  redis:
+    image: redis:latest
+volumes:
+  pgdata:
