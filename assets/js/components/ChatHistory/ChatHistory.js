@@ -1,6 +1,8 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+const ACTIVE = 1;
+const INACTIVE = 0;
 
 const chatHistory = props => {
     return (

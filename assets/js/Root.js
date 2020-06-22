@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 import ChatHistory from './components/ChatHistory/ChatHistory';
 import ChatInput from './components/ChatInput/ChatInput';
 import {Socket} from "phoenix"
-// import Header from './components/Header'
-// import HomePage from './pages'
+import ChatDemo from '../js/components/ChatDemo/ChatDemo';
 
 export default class Root extends Component {
   state = {
@@ -23,6 +22,7 @@ export default class Root extends Component {
           typed={this.state.typed}
           handleKeyPress={this.keyPress.bind(this)}
         />
+        <ChatDemo />
       </div>
     )
   }
