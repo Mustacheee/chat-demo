@@ -2,10 +2,10 @@ use Mix.Config
 
 # Configure your database
 config :chat_demo, ChatDemo.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "chat_demo_dev",
-  hostname: "localhost",
+  username: System.get_env("DB_USER"),
+  password: System.get_env("DB_PASSWORD"),
+  database: System.get_env("DB_DATABASE"),
+  hostname: System.get_env("DB_HOST"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
