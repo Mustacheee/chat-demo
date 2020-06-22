@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ChatMessage extends Component{
+class Message extends Component{
     render() {
        return(
           <p style={{marginBottom: 0}}>{this.props.message}<br/>
@@ -9,4 +9,4 @@ class ChatMessage extends Component{
     }
  }
 
- export default ChatMessage;
+ export default Message;

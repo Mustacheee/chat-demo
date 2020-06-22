@@ -1,30 +1,26 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-const ACTIVE = 1;
-const INACTIVE = 0;
+import React, { Component } from 'react';
+import Message from '../Message/Message';
 
-const chatHistory = props => {
-    return (
-        <TextField
-          id="outlined-multiline-static"
-          multiline
-          placeholder="Chat History"
-          rows={4}
-          defaultValue={props.messages.join('\n')}
-          inputProps={{readOnly: true}}
-          variant="filled"
-        />
-        // <TextareaAutosize
-        //     id="filled-full-width"
-        //     label="Chat History"
-        //     margin="normal"
-        //     readOnly={true}
-        //     variant="filled"
-        //     defaultValue={props.messages.join('\n')}
-        // >
-        // </TextareaAutosize>
-    );
-}
+class ChatHistory extends Component {
+    render() {      
+       var createMessage = function(message, index) {
+          var liStyles = {
+             backgroundColor: ( index % 2 == 1 ) ? '#ddd' : '#efefef',
+             padding: '1rem',
+             borderBottom: '1px solid #ddd'
+          };
+          
+          return <li style={liStyles}><Message message={message.message} timestamp={message.timestamp} /></li>
+       };
+          
+       var ulStyles = {
+          listStyle: 'none',
+          margin: 0,
+          padding: 0
+       };
+       
+       return <ul style={ulStyles}>{this.props.messages.map(createMessage)}</ul>;
+    }
+ }
 
-export default chatHistory;
+ export default ChatHistory;

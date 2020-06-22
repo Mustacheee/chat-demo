@@ -4,28 +4,35 @@ import React, { Component } from 'react';
 import ChatHistory from './components/ChatHistory/ChatHistory';
 import ChatInput from './components/ChatInput/ChatInput';
 import {Socket} from "phoenix"
-import ChatDemo from '../js/components/ChatDemo/ChatDemo';
 
 export default class Root extends Component {
   state = {
     typed: '',
-    messages: []
+    messages: [
+      { message: 'Hi Josh', timestamp: 'Tuesday' },
+      { message: 'How are you?', timestamp: 'Wednesday' }                                    
+   ]
   }
 
   render() {
     return (
-      <div>
-        <ChatHistory messages={this.state.messages}/>
-        <ChatInput 
-          handleSubmit={this.addChat.bind(this)}
-          handleChange={this.onInputChangeHandler.bind(this)}
-          typed={this.state.typed}
-          handleKeyPress={this.keyPress.bind(this)}
-        />
-        <ChatDemo />
-      </div>
-    )
-  }
+       <div className="chat-demo">
+          <ChatHistory messages={this.state.messages} />
+          <ChatInput 
+            handleSubmit={this.handleSubmit.bind(this)}
+            handleInputChange={this.onInputChangeHandler.bind(this)}
+            value={this.state.typed}
+          />
+       </div>
+    );
+ }
+
+ handleSubmit(e) {
+  e.preventDefault();
+  var nextMessages = this.state.messages.concat([{ message: this.state.inputText, timestamp: 'Thursday' }]);
+  var nextInputText = '';
+  this.setState({ messages: nextMessages, inputText: nextInputText });
+}
 
   keyPress(event) {
     console.log(event.key)

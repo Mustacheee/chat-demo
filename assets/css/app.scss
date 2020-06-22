@@ -29,3 +29,26 @@
 .alert:empty {
   display: none;
 }
+
+.chat-demo {
+  max-width: 40em;
+  margin: 1rem auto;
+}
+
+.chat-input-container {
+  display: flex;
+
+  input {
+    flex: 1 auto;
+  }
+
+  button {
+    background-color: #00d8ff;
+    border: none;
+    color: #336699;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    font-size: 0.8em;
+  }
+}
