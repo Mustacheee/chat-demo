@@ -1,5 +1,3 @@
-// assets/js/Root.tsx
-
 import React, { Component } from 'react';
 import ChatHistory from './components/ChatHistory/ChatHistory';
 import ChatInput from './components/ChatInput/ChatInput';
@@ -24,16 +22,16 @@ export default class Chat extends Component {
     this.channel.join()
       .receive("error", resp => { console.log("Unable to join", resp) })
       .receive("ok", resp => { 
-        console.log("Joined successfully", resp)
+        console.log("Received an OK response", resp)
+
         const messages = resp.messages.map(this.formatMessage);
-        
         this.setState({ messages: messages })
       })
 
       this.channel.on(`topic:${this.state.topic}:message`, newMessage => {
-        console.log("got something!", newMessage)
-        const messages = this.state.messages.slice();
+        console.log("Incoming!", newMessage)
 
+        const messages = this.state.messages.slice();
         messages.push(this.formatMessage(newMessage));
         this.setState({ messages: messages })
       })
