@@ -1,11 +1,34 @@
 defmodule ChatDemoWeb.UserSocket do
   use Phoenix.Socket
+  alias ChatDemo.Models.User
 
   ## Channels
-  # channel "topic:*", ChatDemoWeb.TopicChannel
+  channel "topic:*", ChatDemoWeb.TopicChannel
 
+  # Socket params are passed from the client and can
+  # be used to verify and authenticate a user. After
+  # verification, you can put default assigns into
+  # the socket that will be set for all channels, ie
+  #
+  #     {:ok, assign(socket, :user_id, verified_user_id)}
+  #
+  # To deny connection, return `:error`.
+  #
+  # See `Phoenix.Token` documentation for examples in
+  # performing token verification on connect.
   @impl true
-  def connect( _params, _socket, _connect_info), do: :error
+  def connect(%{"username" => username}, socket, _connect_info) do
+    username
+    |> User.get_by_username()
+    |> case do
+      %User{id: user_id} ->
+        {:ok, assign(socket, :user_id, user_id)}
+      _ ->
+        :error
+    end
+  end
+
+  def connect(_, _, _), do: :error
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #
