@@ -35,6 +35,31 @@
   margin: 1rem auto;
 }
 
+.chat-history {
+  max-height: 200px;
+  overflow-y: scroll;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .message {
+    background-color: #ddd;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  .message:nth-child(even) {
+    background-color: #efefef;
+  }
+}
+
 .chat-input-container {
   display: flex;
 

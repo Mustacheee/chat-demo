@@ -11,7 +11,21 @@ export default class Root extends Component {
     messages: [
       { message: 'Hi Josh', timestamp: 'Tuesday' },
       { message: 'How are you?', timestamp: 'Wednesday' }                                    
-   ]
+   ],
+   topic: "a"
+  }
+
+  socket = new Socket("/socket", {params: {token: window.userToken}});
+  channel = null;
+
+  componentDidMount() {
+    this.socket.connect()
+
+    this.channel = this.socket.channel(`topic:${this.state.topic}`, {})
+
+    this.channel.join()
+      .receive("ok", resp => { console.log("Joined successfully", resp) })
+      .receive("error", resp => { console.log("Unable to join", resp) })
   }
 
   render() {
@@ -19,7 +33,7 @@ export default class Root extends Component {
        <div className="chat-demo">
           <ChatHistory messages={this.state.messages} />
           <ChatInput 
-            handleSubmit={this.handleSubmit.bind(this)}
+            handleSubmit={this.addChat.bind(this)}
             handleInputChange={this.onInputChangeHandler.bind(this)}
             value={this.state.typed}
           />
@@ -27,39 +41,25 @@ export default class Root extends Component {
     );
  }
 
- handleSubmit(e) {
-  e.preventDefault();
-  var nextMessages = this.state.messages.concat([{ message: this.state.inputText, timestamp: 'Thursday' }]);
-  var nextInputText = '';
-  this.setState({ messages: nextMessages, inputText: nextInputText });
-}
-
   keyPress(event) {
-    console.log(event.key)
     if (event.key === "Enter") {
       this.addChat()
     }
   }
 
-  addChat() {
-    let socket = new Socket("/socket", {params: {token: window.userToken}})
-    socket.connect()
-
-    let channel = socket.channel("topic:a", {})
-
-    channel.join()
-      .receive("ok", resp => { console.log("Joined successfully", resp) })
-      .receive("error", resp => { console.log("Unable to join", resp) })
-
-    const user = "test user";
+  addChat(e) {
+    e.preventDefault();
+    // const user = "test user";
     const text = this.state.typed;
 
-    channel.push("message", text)
-    console.log(`user is ${user}`)
-    console.log(`text is ${text}`)
+    if (text === "") {
+      return false;
+    }
+
+    this.channel.push("message", text)
 
     const messages = this.state.messages.slice();
-    messages.push(text);
+    messages.push({ message: text, timestamp: 'Friday' });
     this.setState({ messages: messages, typed: ''})
   }
 

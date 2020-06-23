@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Message extends Component{
-    render() {
-       return(
-          <p style={{marginBottom: 0}}>{this.props.message}<br/>
-          <small>{this.props.timestamp}</small></p>
-       );
-    }
+const message = props => {
+   return(
+      <p>{props.message}<br/>
+      <small>{props.timestamp}</small>
+   </p>
+   );
  }
 
- export default Message;
+ export default message;
