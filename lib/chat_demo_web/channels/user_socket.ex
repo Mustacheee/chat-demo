@@ -1,5 +1,6 @@
 defmodule ChatDemoWeb.UserSocket do
   use Phoenix.Socket
+  alias ChatDemo.Models.User
 
   ## Channels
   channel "topic:*", ChatDemoWeb.TopicChannel
@@ -16,9 +17,18 @@ defmodule ChatDemoWeb.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   @impl true
-  def connect(_params, socket, _connect_info) do
-    {:ok, socket}
+  def connect(%{"username" => username}, socket, _connect_info) do
+    username
+    |> User.get_by_username()
+    |> case do
+      %User{id: user_id} ->
+        {:ok, assign(socket, :user_id, user_id)}
+      _ ->
+        :error
+    end
   end
+
+  def connect(_, _, _), do: :error
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #

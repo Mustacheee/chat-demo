@@ -1,11 +1,4 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     ChatDemo.Repo.insert!(%ChatDemo.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias ChatDemo.Models.{Topic, User}
+
+ChatDemo.Repo.insert!(%User{username: "default user"})
+ChatDemo.Repo.insert!(%Topic{name: "default"})
