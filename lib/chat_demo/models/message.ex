@@ -19,6 +19,7 @@ defmodule ChatDemo.Models.Message do
     |> validate_required([:message, :user_id, :topic_id])
   end
 
+  @spec create(:invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}) :: any
   def create(params) do
     %__MODULE__{}
     |> changeset(params)

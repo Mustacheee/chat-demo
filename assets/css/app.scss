@@ -30,9 +30,17 @@
   display: none;
 }
 
+.main-window {
+  display: grid;
+  // height: 1000px;
+  align-items: stretch;
+}
+
 .chat-demo {
-  max-width: 40em;
-  margin: 1rem auto;
+  padding: 2px;
+  border-radius: 1px;
+  border-color: green;
+  border-style: solid;
 }
 
 .chat-history {
@@ -65,6 +73,7 @@
 
   input {
     flex: 1 auto;
+    background-color: white;
   }
 
   button {
