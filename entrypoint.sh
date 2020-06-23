@@ -19,7 +19,6 @@ if [[ -z `psql -Atqc "\\list $PGDATABASE"` ]]; then
   mix ecto.setup
   echo "Database $PGDATABASE created."
 else
-mix ecto.reset
   echo "Database already exists"
 fi
 
