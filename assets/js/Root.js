@@ -24,19 +24,22 @@ export default class Root extends Component {
       .receive("error", resp => { console.log("Unable to join", resp) })
       .receive("ok", resp => { 
         console.log("Joined successfully", resp)
-        const messages = resp.messages.map( existing => {
-          return { message: existing.message, timestamp: `${existing.inserted_at}Z`, author: existing.user.username}
-        });
+        const messages = resp.messages.map(this.formatMessage);
         
         this.setState({ messages: messages })
       })
 
       this.channel.on(`topic:${this.state.topic}:message`, newMessage => {
+        console.log("got something!", newMessage)
         const messages = this.state.messages.slice();
 
-        messages.push({ message: newMessage.message, timestamp: newMessage.inserted_at });
+        messages.push(this.formatMessage(newMessage));
         this.setState({ messages: messages })
       })
+  }
+  
+  formatMessage(message) {
+    return { message: message.message, timestamp: `${message.inserted_at}Z`, author: message.user.username }
   }
 
   render() {

@@ -23,5 +23,11 @@ defmodule ChatDemo.Models.Message do
     %__MODULE__{}
     |> changeset(params)
     |> Repo.insert()
+    |> case do
+      {:ok, %__MODULE__{} = message} ->
+        {:ok, Repo.preload(message, :user)}
+      other ->
+        other
+    end
   end
 end
