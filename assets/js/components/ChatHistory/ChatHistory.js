@@ -12,7 +12,7 @@ const chatHistory = props => {
  const createMessage = (message, index) => {
    return (
       <li key={index} className="message">
-         <Message message={message.message} timestamp={message.timestamp} />
+         <Message message={message.message} timestamp={message.timestamp} author={message.author}/>
       </li>);
  };
 

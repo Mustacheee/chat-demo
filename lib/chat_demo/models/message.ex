@@ -2,7 +2,7 @@ defmodule ChatDemo.Models.Message do
   use ChatDemo, :model
   alias ChatDemo.Models.{Topic, User}
 
-  @derive {Jason.Encoder, only: [:message, :inserted_at]}
+  @derive {Jason.Encoder, only: [:message, :inserted_at, :user]}
 
   schema "messages" do
     field :message, :string

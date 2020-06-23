@@ -8,7 +8,7 @@ const message = props => {
    const time = new Date(props.timestamp);
    
    return(
-      <p>{props.message}<br/>
+      <p>({props.author}) - {props.message}<br/>
       <small>{timeAgo.format(time)}</small>
    </p>
    );

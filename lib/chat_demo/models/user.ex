@@ -2,6 +2,8 @@ defmodule ChatDemo.Models.User do
   use ChatDemo, :model
   alias ChatDemo.Models.Message
 
+  @derive {Jason.Encoder, only: [:username]}
+
   schema "users" do
     field :username, :string
 

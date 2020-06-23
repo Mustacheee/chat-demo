@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import ChatHistory from './components/ChatHistory/ChatHistory';
 import ChatInput from './components/ChatInput/ChatInput';
 import {Socket} from "phoenix"
-import message from './components/Message/Message';
 
 export default class Root extends Component {
   state = {
@@ -22,18 +21,17 @@ export default class Root extends Component {
     this.channel = socket.channel(`topic:${this.state.topic}`, {})
 
     this.channel.join()
+      .receive("error", resp => { console.log("Unable to join", resp) })
       .receive("ok", resp => { 
         console.log("Joined successfully", resp)
         const messages = resp.messages.map( existing => {
-          return { message: existing.message, timestamp: `${existing.inserted_at}Z`}
+          return { message: existing.message, timestamp: `${existing.inserted_at}Z`, author: existing.user.username}
         });
         
         this.setState({ messages: messages })
       })
-      .receive("error", resp => { console.log("Unable to join", resp) })
 
       this.channel.on(`topic:${this.state.topic}:message`, newMessage => {
-        console.log("got something!", newMessage);
         const messages = this.state.messages.slice();
 
         messages.push({ message: newMessage.message, timestamp: newMessage.inserted_at });

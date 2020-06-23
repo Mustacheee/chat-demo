@@ -23,6 +23,6 @@ defmodule ChatDemo.Models.Topic do
   def get_by_name(name) do
     __MODULE__
     |> Repo.get_by(%{name: name})
-    |> Repo.preload(:messages)
+    |> Repo.preload([messages: [:user]])
   end
 end
